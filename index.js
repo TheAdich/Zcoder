@@ -3,7 +3,9 @@ const app = express();
 const port =3000;
 const connect = require('./config/database');
 const signup = require('./signup/signup');
+const login = require('./login/login');
 app.use(express.json());
+app.use(login.app);
 app.use(signup.app);
 connect();
 app.listen(port,()=>{
