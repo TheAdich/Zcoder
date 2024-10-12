@@ -1,4 +1,4 @@
-Welcome to Zcoder app
+Welcome to Zcoder app 
 How to setup the project?
 <br>
 1.) Clone the Repo
@@ -15,6 +15,7 @@ How to setup the project?
 <br>
 7.) You are all set!
 <br>
+Trying to add docker setup too
 
 
 https://github.com/TheAdich/Zcoder/assets/128921226/7c473ef5-e9ab-4255-8be2-9f5911e74d01
