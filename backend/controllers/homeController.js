@@ -3,7 +3,7 @@ const express=require('express')
 
 const home=async(req,res)=>{
     try{
-        const problems = await problem.find({ user_id: { $ne: req.user._id },ispublic:true }).limit(20);
+        const problems = await problem.find({ispublic:true }).limit(50);
         const shuffledProblems = problems.sort(() => Math.random() - 0.5);
         // const problems = await problem.aggregate([
         //     { $match: { user_id: { $ne: req.user._id } } },
