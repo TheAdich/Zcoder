@@ -29,7 +29,7 @@ app.use(session({
     cookie: { secure: true }
 }));
 app.use(cors({
-    origin:['http://localhost:3000','zcoder-liard.vercel.app'],
+    origin:['http://localhost:3000','https://zcoder-liard.vercel.app'],
     credentials:true,
     methods:['GET', 'POST','PUT','DELETE'],
 }))
