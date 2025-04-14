@@ -1,12 +1,12 @@
 "use client";
-import auth from "@/app/auth/auth";
+import auth from "@/auth/auth";
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FiClock } from "react-icons/fi";
 import { BiMessageAltCheck } from "react-icons/bi";
-import Testareaanswer from "@/app/components/ui/textareaeditor";
-import Navbar from "@/app/components/ui/Navbar";
+import Testareaanswer from "@/components/ui/textareaeditor";
+import Navbar from "@/components/ui/Navbar";
 const QuestionPage = ({ params }) => {
     const _id = params.id;
     const [question_, setQuestion_] = useState(null);
