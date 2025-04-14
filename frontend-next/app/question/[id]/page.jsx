@@ -9,6 +9,7 @@ import Testareaanswer from "@/components/ui/textareaeditor";
 import Navbar from "@/components/ui/Navbar";
 const QuestionPage = ({ params }) => {
     const _id = params.id;
+    //console.log(_id);
     const [question_, setQuestion_] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -29,7 +30,7 @@ const QuestionPage = ({ params }) => {
             }
         };
         fetchQuestion();
-    }, [_id]);
+    }, []);
 
     if (loading) {
         return (<div>Loading...</div>); // Show a loading state while the data is being fetched

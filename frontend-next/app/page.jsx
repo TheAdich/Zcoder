@@ -32,7 +32,7 @@ const Home = () => {
     return (
         <React.Fragment>
             <Navbar />
-            <div className='dark:bg-black bg-gray-50 w-full p-4'>
+            <div className='dark:bg-black bg-gray-50 w-full p-4 min-h-screen'>
 
                     <h1 className='text-3xl font-bold mb-2 capitalize text-black pb-2 dark:text-white' >All questions</h1>
                     {problems.map((problem) => (
