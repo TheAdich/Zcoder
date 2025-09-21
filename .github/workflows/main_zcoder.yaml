@@ -1,0 +1,47 @@
+name: CI/CD Docker + Render
+
+on:
+  push:
+    branches: [ main ]       # Trigger on direct push to main
+  pull_request:
+    branches: [ main ]       # Trigger on PR targeting main
+
+jobs:
+  build:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/zcoder-backend:latest
+
+  deploy:
+    name: Deploy to Render
+    needs: build  # Only runs if build passes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}

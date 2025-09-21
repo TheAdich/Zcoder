@@ -42,4 +42,4 @@ app.post('/signup',async (req,res)=>{
         console.log(error);
     }
 })
-exports.app=app;
+exports.app = app;
