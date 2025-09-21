@@ -1,10 +1,10 @@
-name: CI/CD Docker + Render
+name: CI/CD Docker Backend
 
 on:
   push:
-    branches: [ deployrepo ]       # Trigger on direct push to main
+    branches: [ deployrepo ]       # Trigger on direct push to deployrepo
   pull_request:
-    branches: [ deployrepo ]       # Trigger on PR targeting main
+    branches: [ deployrepo ]       # Trigger on PR targeting deployrepo
 
 jobs:
   build:
@@ -27,21 +27,9 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./backend       # <-- folder containing your backend Dockerfile
+          file: ./backend/Dockerfile   # <-- path to backend Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/zcoder-backend:latest
-
-  deploy:
-    name: Deploy to Render
-    needs: build  # Only runs if build passes
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Deploy to Render
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/zcoder-backend:latest
+            ${{ secrets.DOCKER_USERNAME }}/zcoder-backend:${{ github.sha }}
