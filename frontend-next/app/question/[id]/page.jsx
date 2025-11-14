@@ -13,8 +13,8 @@ const QuestionPage = ({ params }) => {
     const [question_, setQuestion_] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    useEffect(() => {
-        const fetchQuestion = async () => {
+
+    const fetchQuestion = async () => {
             const token = window.sessionStorage.getItem("token");
             try {
                 const response = await axios.get(`https://zcoder-backend-dm5b.onrender.com/api/problem/${_id}`, {
@@ -29,20 +29,28 @@ const QuestionPage = ({ params }) => {
                 setLoading(false);
             }
         };
+
+
+    useEffect(() => {
+        
         fetchQuestion();
     }, []);
 
-    if (loading) {
-        return (<div>Loading...</div>); // Show a loading state while the data is being fetched
-    }
+    // if (loading) {
+    //     return (<div>Loading...</div>); // Show a loading state while the data is being fetched
+    // }
 
     if (error) {
         return (<div>Error: {error.message}</div>); // Show an error message if the request fails
     }
 
+    
+
     if (!question_) {
-        return (<div>No data found</div>); // Handle the case where no question data is returned
+        return (<div>We are fetching.</div>); // Handle the case where no question data is returned
     }
+
+
     console.log(question_);
     const { title, question, answers, tag, date,name } = question_.problems;
     const currentTime = new Date();
@@ -125,7 +133,7 @@ const QuestionPage = ({ params }) => {
                 )}
                 <div className="answereditor mt-6">
                     <div className="text-sm font-medium mt-4">Write your answer here</div>
-                    <Testareaanswer _id={_id}/>
+                    <Testareaanswer _id={_id} onAnswerPosted={fetchQuestion}/>
                 </div>
             </div>
             </div>
@@ -136,4 +144,4 @@ const QuestionPage = ({ params }) => {
     );
 }
 
-export default auth(QuestionPage);
+export default QuestionPage;

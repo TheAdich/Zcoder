@@ -3,7 +3,8 @@ const app = express();
 const {createServer}=require('http');
 const {Server}=require('socket.io')
 const cors=require('cors');
-const port =process.env.PORT || 10000;
+
+
 const connect = require('./config/database');
 const auth=require('./middleware/auth');
 //const userRouter=require('./routes/userRoute');
@@ -20,6 +21,7 @@ const middleware=require('./middleware/auth');
 dotenv.config();
 const profile = require('./pages/profile/profile');
 const ask = require('./pages/problem/problem')
+const port =process.env.PORT;
 app.use(express.json());    
 app.use(express.urlencoded({ extended: false }));
 app.use(session({

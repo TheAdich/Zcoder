@@ -1,8 +1,11 @@
 const mongoose=require('mongoose')
+const dotenv=require('dotenv');
+dotenv.config();
+const mongo_uri=process.env.DB_URI;
 const connect = async ()=>{
     try {
         console.log('Connecting to database')
-        await mongoose.connect("mongodb+srv://testing_node:test1234@cluster0.jriry7x.mongodb.net/Zcoder?retryWrites=true&w=majority&appName=Cluster0"
+        await mongoose.connect(mongo_uri
         ).then(()=>{
             console.log('Database connected');
         }).catch((err)=>{
