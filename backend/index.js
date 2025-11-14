@@ -68,7 +68,7 @@ server.listen(port,()=>{
     
 const io=new Server(server,{
     cors:{
-        origin:['http://localhost:3000','https://zcoder-kappa.vercel.app'],
+        origin:['http://localhost:3000','https://zcoder-kappa.vercel.app','https://zcoder-liard.vercel.app'],
         credentials:true,
         methods:['GET', 'POST','PUT','DELETE'],
     }
